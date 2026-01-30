@@ -1,0 +1,124 @@
+# wallust template - colors-yazi
+# Auto-generated yazi theme matching wallpaper colors
+
+[manager]
+cwd = { fg = "{{color4}}" }
+
+# Hovered
+hovered         = { fg = "{{color0}}", bg = "{{color4}}" }
+preview_hovered = { underline = true }
+
+# Find
+find_keyword  = { fg = "{{color3}}", bold = true, italic = true, underline = true }
+find_position = { fg = "{{color5}}", bg = "reset", bold = true, italic = true }
+
+# Marker
+marker_copied   = { fg = "{{color2}}", bg = "{{color2}}" }
+marker_cut      = { fg = "{{color1}}", bg = "{{color1}}" }
+marker_marked   = { fg = "{{color6}}", bg = "{{color6}}" }
+marker_selected = { fg = "{{color3}}", bg = "{{color3}}" }
+
+# Tab
+tab_active   = { fg = "{{color0}}", bg = "{{color4}}" }
+tab_inactive = { fg = "{{foreground}}", bg = "{{color8}}" }
+tab_width    = 1
+
+# Count
+count_copied   = { fg = "{{color0}}", bg = "{{color2}}" }
+count_cut      = { fg = "{{color0}}", bg = "{{color1}}" }
+count_selected = { fg = "{{color0}}", bg = "{{color3}}" }
+
+# Border
+border_symbol = "│"
+border_style  = { fg = "{{color8}}" }
+
+[status]
+separator_open  = ""
+separator_close = ""
+separator_style = { fg = "{{color8}}", bg = "{{color8}}" }
+
+# Mode
+mode_normal = { fg = "{{color0}}", bg = "{{color4}}", bold = true }
+mode_select = { fg = "{{color0}}", bg = "{{color2}}", bold = true }
+mode_unset  = { fg = "{{color0}}", bg = "{{color5}}", bold = true }
+
+# Progress
+progress_label  = { fg = "{{foreground}}", bold = true }
+progress_normal = { fg = "{{color4}}", bg = "{{color8}}" }
+progress_error  = { fg = "{{color1}}", bg = "{{color8}}" }
+
+# Permissions
+permissions_t = { fg = "{{color4}}" }
+permissions_r = { fg = "{{color3}}" }
+permissions_w = { fg = "{{color1}}" }
+permissions_x = { fg = "{{color2}}" }
+permissions_s = { fg = "{{color5}}" }
+
+[input]
+border   = { fg = "{{color4}}" }
+title    = {}
+value    = {}
+selected = { reversed = true }
+
+[pick]
+border   = { fg = "{{color4}}" }
+active   = { fg = "{{color5}}", bold = true }
+inactive = {}
+
+[confirm]
+border     = { fg = "{{color4}}" }
+title      = { fg = "{{color4}}" }
+content    = {}
+list       = {}
+btn_yes    = { bg = "{{color2}}" }
+btn_no     = { bg = "{{color1}}" }
+btn_labels = [" [Y]es ", " [N]o "]
+
+[completion]
+border   = { fg = "{{color4}}" }
+active   = { fg = "{{color5}}", bold = true }
+inactive = {}
+icon_file    = ""
+icon_folder  = ""
+icon_command = ""
+
+[tasks]
+border  = { fg = "{{color4}}" }
+title   = {}
+hovered = { fg = "{{color5}}", underline = true }
+
+[which]
+cols = 3
+mask            = { bg = "{{color8}}" }
+cand            = { fg = "{{color6}}" }
+rest            = { fg = "{{color8}}" }
+desc            = { fg = "{{color5}}" }
+separator       = "  "
+separator_style = { fg = "{{color8}}" }
+
+[help]
+on      = { fg = "{{color4}}" }
+run     = { fg = "{{color5}}" }
+hovered = { reversed = true, bold = true }
+footer  = { fg = "{{color8}}", bg = "{{background}}" }
+
+[notify]
+title_info  = { fg = "{{color2}}" }
+title_warn  = { fg = "{{color3}}" }
+title_error = { fg = "{{color1}}" }
+
+[filetype]
+rules = [
+    # Images
+    { mime = "image/*", fg = "{{color6}}" },
+    # Media
+    { mime = "{audio,video}/*", fg = "{{color5}}" },
+    # Archives
+    { mime = "application/*zip", fg = "{{color1}}" },
+    { mime = "application/x-{tar,bzip*,7z-compressed,xz,rar}", fg = "{{color1}}" },
+    # Documents
+    { mime = "application/{pdf,doc,rtf}", fg = "{{color3}}" },
+    # Fallback
+    { name = "*", fg = "{{foreground}}" },
+    { name = "*/", fg = "{{color4}}" },
+]

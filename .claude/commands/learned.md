@@ -1,0 +1,1 @@
+Add what was just learned or fixed to the CLAUDE.md Learnings section. Format as a bullet point with a bold title and brief explanation. Only add genuinely useful information that would help future sessions.

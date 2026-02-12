@@ -60,7 +60,7 @@ return {
     },
     {
       text = "",
-      action = ":lua Snacks.picker.files({ cwd = '~/nolife/projects' })",
+      action = ":lua Snacks.picker.projects({ confirm = function(picker, item) picker:close() if item then vim.cmd('cd ' .. vim.fn.fnameescape(item.file)) Snacks.picker.files() end end })",
       key = "p",
     },
     { text = "", action = ":lua Snacks.picker.recent()", key = "r" },

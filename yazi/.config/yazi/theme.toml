@@ -1,0 +1,124 @@
+# wallust template - colors-yazi
+# Auto-generated yazi theme matching wallpaper colors
+
+[manager]
+cwd = { fg = "#56388A" }
+
+# Hovered
+hovered         = { fg = "#403D45", bg = "#56388A" }
+preview_hovered = { underline = true }
+
+# Find
+find_keyword  = { fg = "#291C50", bold = true, italic = true, underline = true }
+find_position = { fg = "#6D41A0", bg = "reset", bold = true, italic = true }
+
+# Marker
+marker_copied   = { fg = "#1D143B", bg = "#1D143B" }
+marker_cut      = { fg = "#130D28", bg = "#130D28" }
+marker_marked   = { fg = "#BAB2BC", bg = "#BAB2BC" }
+marker_selected = { fg = "#291C50", bg = "#291C50" }
+
+# Tab
+tab_active   = { fg = "#403D45", bg = "#56388A" }
+tab_inactive = { fg = "#FDF9FE", bg = "#AAA6AB" }
+tab_width    = 1
+
+# Count
+count_copied   = { fg = "#403D45", bg = "#1D143B" }
+count_cut      = { fg = "#403D45", bg = "#130D28" }
+count_selected = { fg = "#403D45", bg = "#291C50" }
+
+# Border
+border_symbol = "│"
+border_style  = { fg = "#AAA6AB" }
+
+[status]
+separator_open  = ""
+separator_close = ""
+separator_style = { fg = "#AAA6AB", bg = "#AAA6AB" }
+
+# Mode
+mode_normal = { fg = "#403D45", bg = "#56388A", bold = true }
+mode_select = { fg = "#403D45", bg = "#1D143B", bold = true }
+mode_unset  = { fg = "#403D45", bg = "#6D41A0", bold = true }
+
+# Progress
+progress_label  = { fg = "#FDF9FE", bold = true }
+progress_normal = { fg = "#56388A", bg = "#AAA6AB" }
+progress_error  = { fg = "#130D28", bg = "#AAA6AB" }
+
+# Permissions
+permissions_t = { fg = "#56388A" }
+permissions_r = { fg = "#291C50" }
+permissions_w = { fg = "#130D28" }
+permissions_x = { fg = "#1D143B" }
+permissions_s = { fg = "#6D41A0" }
+
+[input]
+border   = { fg = "#56388A" }
+title    = {}
+value    = {}
+selected = { reversed = true }
+
+[pick]
+border   = { fg = "#56388A" }
+active   = { fg = "#6D41A0", bold = true }
+inactive = {}
+
+[confirm]
+border     = { fg = "#56388A" }
+title      = { fg = "#56388A" }
+content    = {}
+list       = {}
+btn_yes    = { bg = "#1D143B" }
+btn_no     = { bg = "#130D28" }
+btn_labels = [" [Y]es ", " [N]o "]
+
+[completion]
+border   = { fg = "#56388A" }
+active   = { fg = "#6D41A0", bold = true }
+inactive = {}
+icon_file    = ""
+icon_folder  = ""
+icon_command = ""
+
+[tasks]
+border  = { fg = "#56388A" }
+title   = {}
+hovered = { fg = "#6D41A0", underline = true }
+
+[which]
+cols = 3
+mask            = { bg = "#AAA6AB" }
+cand            = { fg = "#BAB2BC" }
+rest            = { fg = "#AAA6AB" }
+desc            = { fg = "#6D41A0" }
+separator       = "  "
+separator_style = { fg = "#AAA6AB" }
+
+[help]
+on      = { fg = "#56388A" }
+run     = { fg = "#6D41A0" }
+hovered = { reversed = true, bold = true }
+footer  = { fg = "#AAA6AB", bg = "#18161D" }
+
+[notify]
+title_info  = { fg = "#1D143B" }
+title_warn  = { fg = "#291C50" }
+title_error = { fg = "#130D28" }
+
+[filetype]
+rules = [
+    # Images
+    { mime = "image/*", fg = "#BAB2BC" },
+    # Media
+    { mime = "{audio,video}/*", fg = "#6D41A0" },
+    # Archives
+    { mime = "application/*zip", fg = "#130D28" },
+    { mime = "application/x-{tar,bzip*,7z-compressed,xz,rar}", fg = "#130D28" },
+    # Documents
+    { mime = "application/{pdf,doc,rtf}", fg = "#291C50" },
+    # Fallback
+    { name = "*", fg = "#FDF9FE" },
+    { name = "*/", fg = "#56388A" },
+]

@@ -56,6 +56,8 @@ no-effects() {
     notify-send -u low -i "$iDIR/ja.png" "No wallpaper" "effects applied"
     # copying wallpaper for rofi menu
     cp "$wallpaper_current" "$wallpaper_output"
+    sleep 1
+    "$SCRIPTSDIR/sddm_wallpaper.sh" --normal
 }
 
 # Function to run rofi menu
@@ -92,6 +94,8 @@ main() {
             # Refresh rofi, waybar, wallust palettes
             "${SCRIPTSDIR}/Refresh.sh"
             notify-send -u low -i "$iDIR/ja.png" "$choice" "effects applied"
+            sleep 1
+            "$SCRIPTSDIR/sddm_wallpaper.sh" --effects
         else
             echo "Effect '$choice' not recognized."
         fi

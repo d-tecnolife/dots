@@ -143,6 +143,7 @@ apply_image_wallpaper() {
   sleep 2
   "$SCRIPTSDIR/Refresh.sh"
   sleep 1
+  "$SCRIPTSDIR/sddm_wallpaper.sh" --normal
 
 }
 

@@ -1,0 +1,55 @@
+#!/bin/sh
+set -eu
+
+DOTFILES="$HOME/.dotfiles"
+
+usage() {
+    echo "Usage: dotstow <path>"
+    echo ""
+    echo "Move a file or directory under \$HOME into the dotfiles stow"
+    echo "structure and symlink it back."
+    echo ""
+    echo "Examples:"
+    echo "  dotstow ~/.config/ghostty"
+    echo "  dotstow ~/.local/bin"
+    echo "  dotstow ~/.bashrc"
+    exit 1
+}
+
+[ $# -eq 1 ] || usage
+
+src="$(realpath "$1")"
+rel="${src#"$HOME"/}"
+
+if [ "$rel" = "$src" ]; then
+    echo "error: $src is not under \$HOME" >&2
+    exit 1
+fi
+
+if [ -L "$src" ]; then
+    echo "error: $src is already a symlink" >&2
+    exit 1
+fi
+
+if [ ! -e "$src" ]; then
+    echo "error: $src does not exist" >&2
+    exit 1
+fi
+
+# Package name: first path component (e.g., .local/bin -> local-bin, .config/ghostty -> ghostty)
+case "$rel" in
+    .config/*)  pkg="$(echo "$rel" | sed 's|^\.config/||; s|/.*||')" ;;
+    *)          pkg="$(echo "$rel" | sed 's|^\.||; s|/|-|g')" ;;
+esac
+
+dest="$DOTFILES/$pkg/$rel"
+
+if [ -e "$DOTFILES/$pkg" ]; then
+    echo "error: $DOTFILES/$pkg already exists" >&2
+    exit 1
+fi
+
+mkdir -p "$(dirname "$dest")"
+mv "$src" "$dest"
+cd "$DOTFILES" && stow "$pkg"
+echo "stowed: $src -> $DOTFILES/$pkg"

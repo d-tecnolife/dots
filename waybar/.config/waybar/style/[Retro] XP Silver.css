@@ -21,8 +21,8 @@
 
 /* --- Taskbar --- */
 window#waybar {
-	background: linear-gradient(180deg, #f0f1f6 0%, #9295ad 5%, #8488a4 12%, #a0a4ba 28%, #b8bccf 48%, #ced2e0 65%, #e4e7f0 85%, #f8f9fc 95%, #ffffff 100%);
-	border-top: 1px solid #e8e9ee;
+	background: linear-gradient(180deg, #dddbd4 0%, #dddbd4 15%, #8490ad 16%, #929cb4 24%, #a0aac0 33%, #b0b8ca 42%, #c0c6d4 52%, #d2d6e0 62%, #dcdee4 72%, #e2e0da 82%, #e8e4da 90%, #e6e2d6 96%, #e2ded4 100%);
+	border-top: none;
 	color: #000000;
 }
 

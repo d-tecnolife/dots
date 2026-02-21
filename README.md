@@ -21,6 +21,7 @@ sudo stow -d ~/.dotfiles -t / keyd
 | `hypr` | Hyprland, hyprlock, hypridle, scripts |
 | `keyd` | System-level key remapping daemon |
 | `kitty` | Kitty terminal |
+| `local-bin` | Custom binaries for the user |
 | `nvim` | Neovim |
 | `rofi` | Rofi launcher and menus |
 | `swaync` | Notification daemon |

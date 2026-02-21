@@ -1,11 +1,11 @@
 /* Windows XP Luna Silver/Metallic Theme */
 /* Colors from luna.msstyles Metallic scheme */
 /*
- * xp-face:    #e0dfe3   (Control)
+ * xp-face:    #e0dfd3   (Control)
  * xp-dark:    #9d9da1   (ControlDark)
  * xp-dkdk:    #716f64   (ControlDarkDark)
- * xp-light:   #f1efe2   (ControlLight)
- * xp-ltlt:    #ffffff   (ControlLightLight)
+ * xp-light:   #f1efd2   (ControlLight)
+ * xp-ltlt:    #ffffed   (ControlLightLight)
  * xp-text:    #000000   (ControlText)
  * xp-hl:      #b2b4bf   (Highlight)
  */
@@ -21,7 +21,7 @@
 
 /* --- Taskbar --- */
 window#waybar {
-	background: linear-gradient(180deg, #dddbd4 0%, #dddbd4 15%, #8490ad 16%, #929cb4 24%, #a0aac0 33%, #b0b8ca 42%, #c0c6d4 52%, #d2d6e0 62%, #dcdee4 72%, #e2e0da 82%, #e8e4da 90%, #e6e2d6 96%, #e2ded4 100%);
+	background: linear-gradient(180deg, #e4e2ce 0%, #dddbc5 4%, #cccbc0 9%, #bec0bd 14%, #acb1b8 19%, #9aa2b3 23%, #8490ad 27%, #929cb4 32%, #a0aac0 38%, #b0b8ca 46%, #c0c6d4 54%, #d2d6d0 64%, #dcded4 74%, #e2e0cb 82%, #e8e4cb 90%, #e6e2c7 96%, #e2dec5 100%);
 	border-top: none;
 	color: #000000;
 }
@@ -59,13 +59,13 @@ tooltip {
 
 /* --- Start button --- */
 #custom-xp-start {
-	color: #ffffff;
+	color: #ffffed;
 	font-weight: bold;
 	font-style: italic;
 	font-size: 14px;
 	background: linear-gradient(0deg, #c5c5cd 0%, #a8a8b2 20%, #8a8a96 50%, #747482 80%, #5e5e6c 100%);
-	border-top: 1px solid #d4d4dc;
-	border-left: 1px solid #d4d4dc;
+	border-top: 1px solid #d4d4cd;
+	border-left: 1px solid #d4d4cd;
 	border-bottom: 1px solid #404050;
 	border-right: 1px solid #404050;
 	border-radius: 0px;
@@ -74,7 +74,7 @@ tooltip {
 }
 
 #custom-xp-start:hover {
-	background: linear-gradient(0deg, #d2d2da 0%, #b8b8c2 20%, #9a9aa6 50%, #848492 80%, #6e6e7c 100%);
+	background: linear-gradient(0deg, #d2d2cb 0%, #b8b8c2 20%, #9a9aa6 50%, #848492 80%, #6e6e7c 100%);
 }
 
 /* --- Workspace buttons --- */
@@ -84,9 +84,9 @@ tooltip {
 
 #workspaces button {
 	color: #000000;
-	background: linear-gradient(0deg, #f1efe2 0%, #e0dfe3 30%, #c8c7cc 70%, #9d9da1 100%);
-	border-top: 1px solid #ffffff;
-	border-left: 1px solid #ffffff;
+	background: linear-gradient(0deg, #f1efd2 0%, #e0dfd3 30%, #c8c7be 70%, #9d9da1 100%);
+	border-top: 1px solid #ffffed;
+	border-left: 1px solid #ffffed;
 	border-bottom: 1px solid #716f64;
 	border-right: 1px solid #716f64;
 	border-radius: 0px;
@@ -104,8 +104,8 @@ tooltip {
 	background: linear-gradient(0deg, #9d9da1 0%, #b2b4bf 30%, #c0bfc5 70%, #9d9da1 100%);
 	border-top: 1px solid #716f64;
 	border-left: 1px solid #716f64;
-	border-bottom: 1px solid #ffffff;
-	border-right: 1px solid #ffffff;
+	border-bottom: 1px solid #ffffed;
+	border-right: 1px solid #ffffed;
 }
 
 #workspaces button.focused {
@@ -113,14 +113,14 @@ tooltip {
 }
 
 #workspaces button.urgent {
-	color: #ffffff;
+	color: #ffffed;
 	background-color: #b2b4bf;
 	border-radius: 0px;
 }
 
 #workspaces button:hover {
 	color: #000000;
-	background: linear-gradient(0deg, #ffffff 0%, #ececf0 30%, #e0dfe3 70%, #c8c7cc 100%);
+	background: linear-gradient(0deg, #ffffed 0%, #ececdf 30%, #e0dfd3 70%, #c8c7be 100%);
 	border-radius: 0px;
 }
 
@@ -133,8 +133,8 @@ tooltip {
 	background: linear-gradient(0deg, #9d9da1 0%, #b2b4bf 30%, #c0bfc5 70%, #9d9da1 100%);
 	border-top: 1px solid #716f64;
 	border-left: 1px solid #716f64;
-	border-bottom: 1px solid #ffffff;
-	border-right: 1px solid #ffffff;
+	border-bottom: 1px solid #ffffed;
+	border-right: 1px solid #ffffed;
 	border-radius: 0px;
 }
 
@@ -155,9 +155,9 @@ tooltip {
 	padding: 0px 2px;
 	border-top: 1px solid #716f64;
 	border-left: 1px solid #716f64;
-	border-bottom: 1px solid #ffffff;
-	border-right: 1px solid #ffffff;
-	background: linear-gradient(0deg, #d6d5da 0%, #e0dfe3 50%, #cccbd0 100%);
+	border-bottom: 1px solid #ffffed;
+	border-right: 1px solid #ffffed;
+	background: linear-gradient(0deg, #d6d5cb 0%, #e0dfd3 50%, #cccbc1 100%);
 }
 
 #clock {
@@ -263,9 +263,9 @@ tooltip {
 	border-radius: 0px;
 	border-top: 1px solid #716f64;
 	border-left: 1px solid #716f64;
-	border-bottom: 1px solid #ffffff;
-	border-right: 1px solid #ffffff;
-	background-color: #ffffff;
+	border-bottom: 1px solid #ffffed;
+	border-right: 1px solid #ffffed;
+	background-color: #ffffed;
 }
 
 #backlight-slider highlight,

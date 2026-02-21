@@ -1,0 +1,276 @@
+/* Windows XP Luna Silver/Metallic Theme */
+/* Colors from luna.msstyles Metallic scheme */
+/*
+ * xp-face:    #e0dfe3   (Control)
+ * xp-dark:    #9d9da1   (ControlDark)
+ * xp-dkdk:    #716f64   (ControlDarkDark)
+ * xp-light:   #f1efe2   (ControlLight)
+ * xp-ltlt:    #ffffff   (ControlLightLight)
+ * xp-text:    #000000   (ControlText)
+ * xp-hl:      #b2b4bf   (Highlight)
+ */
+
+* {
+	font-family: "Tahoma", "DejaVu Sans", "Noto Sans", sans-serif;
+	font-weight: normal;
+	font-size: 13px;
+	min-height: 0;
+	padding: 0;
+	margin: 0;
+}
+
+/* --- Taskbar --- */
+window#waybar {
+	background: linear-gradient(180deg, #f0f1f6 0%, #9295ad 5%, #8488a4 12%, #a0a4ba 28%, #b8bccf 48%, #ced2e0 65%, #e4e7f0 85%, #f8f9fc 95%, #ffffff 100%);
+	border-top: 1px solid #e8e9ee;
+	color: #000000;
+}
+
+window#waybar.hidden {
+	opacity: 0.5;
+}
+
+window#waybar.empty {
+	background-color: transparent;
+}
+
+window#waybar.empty #window {
+	padding: 0px;
+	border: 0px;
+	background-color: transparent;
+}
+
+.modules-right {
+}
+
+.modules-center {
+}
+
+.modules-left {
+}
+
+/* --- Tooltip --- */
+tooltip {
+	color: #000000;
+	background: #ffffe1;
+	border-radius: 0px;
+	border: 1px solid #000000;
+}
+
+/* --- Start button --- */
+#custom-xp-start {
+	color: #ffffff;
+	font-weight: bold;
+	font-style: italic;
+	font-size: 14px;
+	background: linear-gradient(0deg, #c5c5cd 0%, #a8a8b2 20%, #8a8a96 50%, #747482 80%, #5e5e6c 100%);
+	border-top: 1px solid #d4d4dc;
+	border-left: 1px solid #d4d4dc;
+	border-bottom: 1px solid #404050;
+	border-right: 1px solid #404050;
+	border-radius: 0px;
+	padding: 0px 14px 0px 10px;
+	margin: 2px 2px 2px 1px;
+}
+
+#custom-xp-start:hover {
+	background: linear-gradient(0deg, #d2d2da 0%, #b8b8c2 20%, #9a9aa6 50%, #848492 80%, #6e6e7c 100%);
+}
+
+/* --- Workspace buttons --- */
+#workspaces {
+	margin: 0px 2px;
+}
+
+#workspaces button {
+	color: #000000;
+	background: linear-gradient(0deg, #f1efe2 0%, #e0dfe3 30%, #c8c7cc 70%, #9d9da1 100%);
+	border-top: 1px solid #ffffff;
+	border-left: 1px solid #ffffff;
+	border-bottom: 1px solid #716f64;
+	border-right: 1px solid #716f64;
+	border-radius: 0px;
+	padding: 0px 6px;
+	margin: 3px 1px;
+	min-width: 20px;
+	box-shadow: none;
+	text-shadow: none;
+	transition: none;
+}
+
+/* Active = pressed/sunken */
+#workspaces button.active {
+	color: #000000;
+	background: linear-gradient(0deg, #9d9da1 0%, #b2b4bf 30%, #c0bfc5 70%, #9d9da1 100%);
+	border-top: 1px solid #716f64;
+	border-left: 1px solid #716f64;
+	border-bottom: 1px solid #ffffff;
+	border-right: 1px solid #ffffff;
+}
+
+#workspaces button.focused {
+	color: #000000;
+}
+
+#workspaces button.urgent {
+	color: #ffffff;
+	background-color: #b2b4bf;
+	border-radius: 0px;
+}
+
+#workspaces button:hover {
+	color: #000000;
+	background: linear-gradient(0deg, #ffffff 0%, #ececf0 30%, #e0dfe3 70%, #c8c7cc 100%);
+	border-radius: 0px;
+}
+
+/* --- Active window title --- */
+#window {
+	color: #000000;
+	font-weight: bold;
+	padding: 0px 8px;
+	margin: 3px 2px;
+	background: linear-gradient(0deg, #9d9da1 0%, #b2b4bf 30%, #c0bfc5 70%, #9d9da1 100%);
+	border-top: 1px solid #716f64;
+	border-left: 1px solid #716f64;
+	border-bottom: 1px solid #ffffff;
+	border-right: 1px solid #ffffff;
+	border-radius: 0px;
+}
+
+/* --- Notification area --- */
+#tray,
+#bluetooth,
+#network,
+#pulseaudio,
+#battery,
+#clock {
+	padding: 0px 6px;
+	color: #000000;
+}
+
+/* Sunken notification area */
+.modules-right {
+	margin: 3px 2px 3px 0px;
+	padding: 0px 2px;
+	border-top: 1px solid #716f64;
+	border-left: 1px solid #716f64;
+	border-bottom: 1px solid #ffffff;
+	border-right: 1px solid #ffffff;
+	background: linear-gradient(0deg, #d6d5da 0%, #e0dfe3 50%, #cccbd0 100%);
+}
+
+#clock {
+	font-weight: normal;
+	padding-left: 6px;
+	border-left: 1px solid #9d9da1;
+	margin-left: 2px;
+}
+
+#tray {
+	padding: 0px 4px;
+}
+
+#tray > .passive {
+	-gtk-icon-effect: dim;
+}
+
+#tray > .needs-attention {
+	-gtk-icon-effect: highlight;
+}
+
+/* --- Module base --- */
+#backlight,
+#cpu,
+#disk,
+#idle_inhibitor,
+#keyboard-state,
+#memory,
+#mode,
+#mpris,
+#power-profiles-daemon,
+#temperature,
+#wireplumber,
+#custom-backlight,
+#custom-nightlight,
+#custom-browser,
+#custom-cava_mviz,
+#custom-cycle_wall,
+#custom-dot_update,
+#custom-file_manager,
+#custom-keybinds,
+#custom-keyboard,
+#custom-light_dark,
+#custom-lock,
+#custom-hint,
+#custom-hypridle,
+#custom-playerctl,
+#custom-power_vertical,
+#custom-power,
+#custom-quit,
+#custom-reboot,
+#custom-settings,
+#custom-spotify,
+#custom-swaync,
+#custom-tty,
+#custom-updater,
+#custom-hyprpicker,
+#custom-weather {
+	padding: 0px 6px;
+	color: #000000;
+}
+
+/* --- Indicators --- */
+#custom-hypridle.notactive,
+#idle_inhibitor.activated {
+	color: #39aa14;
+}
+
+#temperature.critical {
+	color: #cc3333;
+}
+
+@keyframes blink {
+	to {
+		color: #cc3333;
+	}
+}
+
+#battery.critical:not(.charging) {
+	color: #cc3333;
+	animation-name: blink;
+	animation-duration: 3.0s;
+	animation-timing-function: steps(12);
+	animation-iteration-count: infinite;
+	animation-direction: alternate;
+}
+
+/* --- Sliders --- */
+#backlight-slider slider,
+#pulseaudio-slider slider {
+	min-width: 0px;
+	min-height: 0px;
+	opacity: 0;
+	background-image: none;
+	border: none;
+	box-shadow: none;
+}
+
+#backlight-slider trough,
+#pulseaudio-slider trough {
+	min-width: 80px;
+	min-height: 10px;
+	border-radius: 0px;
+	border-top: 1px solid #716f64;
+	border-left: 1px solid #716f64;
+	border-bottom: 1px solid #ffffff;
+	border-right: 1px solid #ffffff;
+	background-color: #ffffff;
+}
+
+#backlight-slider highlight,
+#pulseaudio-slider highlight {
+	min-height: 10px;
+	border-radius: 0px;
+	background: linear-gradient(0deg, #b2b4bf 0%, #9d9da1 100%);
+}

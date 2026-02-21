@@ -1,0 +1,53 @@
+#![enable(implicit_some)]
+#![enable(unwrap_newtypes)]
+#![enable(unwrap_variant_newtypes)]
+(
+    background_color: "{{background | darken(0.5)}}",
+    text_color: "{{foreground}}",
+    header_background_color: "{{background | darken(0.5)}}",
+    modal_background_color: "{{background | darken(0.5)}}",
+    modal_backdrop: true,
+    preview_label_style: (fg: "{{color5}}"),
+    preview_metadata_group_style: (fg: "{{color5}}", modifiers: "Bold"),
+    highlighted_item_style: (fg: "{{color5}}", modifiers: "Bold"),
+    current_item_style: (fg: "{{color0}}", bg: "{{color5}}", modifiers: "Bold"),
+    borders_style: (fg: "{{color8}}"),
+    highlight_border_style: (fg: "{{color5}}"),
+    symbols: (
+        song: "S",
+        dir: "D",
+        playlist: "P",
+        marker: "M",
+        ellipsis: "...",
+        song_style: None,
+        dir_style: (fg: "{{color4}}"),
+        playlist_style: (fg: "{{color13}}"),
+    ),
+    level_styles: (
+        info: (fg: "{{color12}}"),
+        warn: (fg: "{{color11}}"),
+        error: (fg: "{{color9}}"),
+        debug: (fg: "{{color10}}"),
+        trace: (fg: "{{color13}}"),
+    ),
+    progress_bar: (
+        symbols: ["█", "█", "█", " ", "█"],
+        track_style: (fg: "{{color8}}"),
+        elapsed_style: (fg: "{{color5}}"),
+        thumb_style: (fg: "{{color5}}"),
+        use_track_when_empty: true,
+    ),
+    scrollbar: (
+        symbols: ["│", "█", "▲", "▼"],
+        track_style: (fg: "{{color8}}"),
+        ends_style: (fg: "{{color8}}"),
+        thumb_style: (fg: "{{color5}}"),
+    ),
+    tab_bar: (
+        active_style: (fg: "{{color0}}", bg: "{{color5}}", modifiers: "Bold"),
+        inactive_style: (fg: "{{foreground}}", bg: "{{color8}}"),
+    ),
+    lyrics: (
+        timestamp: false,
+    ),
+)

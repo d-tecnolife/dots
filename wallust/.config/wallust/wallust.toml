@@ -58,6 +58,9 @@ quickshell.target = '~/.config/quickshell/qml_color.json'
 yazi.template = 'colors-yazi.toml'
 yazi.target = '~/.config/yazi/theme.toml'
 
+rmpc.template = 'colors-rmpc.ron'
+rmpc.target = '~/.config/rmpc/themes/wallust.ron'
+
 #swaync.template = 'colors-swaync.css'
 #swaync.target = '~/.config/swaync/wallust/colors-wallust.css'
 

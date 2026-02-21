@@ -1,4 +1,4 @@
-function reload -d "Reload Hyprland, Waybar, swaync, SDDM, and wallpaper"
+function reload -d "Reload Hyprland, Waybar, swaync, SDDM, keyd, and wallpaper"
     hyprctl reload
     ~/.config/hypr/scripts/Refresh.sh &>/dev/null &
     disown
@@ -7,5 +7,6 @@ function reload -d "Reload Hyprland, Waybar, swaync, SDDM, and wallpaper"
     for pid in (pidof kitty)
         kill -SIGUSR1 $pid 2>/dev/null
     end
-    echo "Reloaded: hyprland, waybar, swaync, sddm, kitty"
+    sudo keyd reload
+    echo "Reloaded: hyprland, waybar, swaync, sddm, kitty, keyd"
 end

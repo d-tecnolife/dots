@@ -1,12 +1,12 @@
-# dotfiles
+# dots
 
 Arch Linux dotfiles managed with [GNU Stow](https://www.gnu.org/software/stow/).
 
 ## Setup
 
 ```sh
-cd ~/.dotfiles
-stow fish git hypr kitty nvim rofi swaync tmux wallust waybar wlogout yazi
+cd ~/dots
+stow fish git hypr kitty nvim rofi swaync tmux wallust waybar wlogout yazi local-bin keyd claude
 
 # keyd requires root target
 sudo stow -d ~/.dotfiles -t / keyd

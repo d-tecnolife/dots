@@ -1,0 +1,26 @@
+directory: ~/music
+library: ~/.config/beets/library.db
+
+plugins: chroma fetchart embedart
+
+import:
+  move: yes
+  write: yes
+  incremental: yes
+
+fetchart:
+  auto: yes
+  sources: coverart itunes amazon
+
+embedart:
+  auto: yes
+
+chroma:
+  auto: yes
+
+acoustid:
+  apikey: RFgKEdTDpF
+
+paths:
+  default: $albumartist/$title
+  singleton: $artist/$title

@@ -1,0 +1,44 @@
+#!/bin/sh
+set -eu
+
+DOTFILES="$HOME/dots"
+
+usage() {
+    echo "Usage: dotunstow <package-name>"
+    echo ""
+    echo "Unstow a package, moving its contents back to the original"
+    echo "location and removing it from the dotfiles repo."
+    echo ""
+    echo "Examples:"
+    echo "  dotunstow ghostty"
+    echo "  dotunstow local-bin"
+    exit 1
+}
+
+[ $# -eq 1 ] || usage
+
+pkg="$1"
+pkgdir="$DOTFILES/$pkg"
+
+if [ ! -d "$pkgdir" ]; then
+    echo "error: package $pkgdir does not exist" >&2
+    exit 1
+fi
+
+cd "$DOTFILES" && stow -D "$pkg"
+
+# Move each top-level item in the package back to $HOME
+for item in "$pkgdir"/.[!.]* "$pkgdir"/*; do
+    [ -e "$item" ] || continue
+    base="$(basename "$item")"
+    dest="$HOME/$base"
+    if [ -e "$dest" ] && [ ! -L "$dest" ]; then
+        echo "warning: $dest already exists, skipping" >&2
+        continue
+    fi
+    [ -L "$dest" ] && rm "$dest"
+    mv "$item" "$dest"
+done
+
+rm -rf "$pkgdir"
+echo "unstowed: $pkg (removed $pkgdir)"

@@ -108,14 +108,7 @@ shotwin() {
 }
 
 shotarea() {
-	tmpfile=$(mktemp)
-	grim -g "$(slurp)" - >"$tmpfile"
-
-  # Copy with saving
-	if [[ -s "$tmpfile" ]]; then
-		wl-copy <"$tmpfile"
-		mv "$tmpfile" "$dir/$file"
-	fi
+	grimblast --freeze copysave area "$dir/$file"
 	notify_view
 }
 
@@ -130,7 +123,9 @@ shotactive() {
 }
 
 shotswappy() {
-	grim -g "$(slurp)" - | swappy -f -
+	tmpfile=$(mktemp --suffix=.png)
+	grimblast --freeze copysave area "$tmpfile"
+	[[ -s "$tmpfile" ]] && swappy -f "$tmpfile"
 }
 
 if [[ ! -d "$dir" ]]; then

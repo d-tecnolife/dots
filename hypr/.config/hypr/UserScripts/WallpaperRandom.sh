@@ -5,6 +5,7 @@
 PICTURES_DIR="$(xdg-user-dir PICTURES 2>/dev/null || echo "$HOME/Pictures")"
 wallDIR="$PICTURES_DIR/wallpapers"
 SCRIPTSDIR="$HOME/.config/hypr/scripts"
+UserScripts="$HOME/.config/hypr/UserScripts"
 
 focused_monitor=$(hyprctl monitors -j | jq -r '.[] | select(.focused) | .name')
 
@@ -27,7 +28,7 @@ wait $!
 
 wait $!
 sleep 2
-"$SCRIPTSDIR/Refresh.sh"
+"$UserScripts/Refresh.sh"
 sleep 1
-"$SCRIPTSDIR/sddm_wallpaper.sh" --normal
+"$UserScripts/sddm_wallpaper.sh" --normal
 

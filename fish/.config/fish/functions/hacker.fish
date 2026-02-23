@@ -3,10 +3,10 @@ function hacker
         switch "$argv[2]"
             case on
                 echo "Haxx0r Mode Sequence Initialized."
-                theme load vista-dark >/dev/null
+                ~/.config/hypr/UserScripts/ThemePicker.sh --apply dark >/dev/null 2>&1
             case off
                 echo "Haxx0r Mode Sequence Terminated."
-                theme load xp-silver >/dev/null
+                ~/.config/hypr/UserScripts/ThemePicker.sh --apply light >/dev/null 2>&1
             case '*'
                 echo "Try: hacker mode [on|off]"
         end

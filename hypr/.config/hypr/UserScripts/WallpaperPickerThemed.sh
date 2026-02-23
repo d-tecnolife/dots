@@ -1,18 +1,18 @@
 #!/usr/bin/env bash
 # /* ---- 💫 https://github.com/JaKooLit 💫 ---- */
-# This script for selecting wallpapers (SUPER W)
+# Wallpaper picker filtered to current theme (light/dark)
+# Based on WallpaperSelect.sh but uses themes/*/wallpapers/
 
-# WALLPAPERS PATH
-terminal=kitty
-PICTURES_DIR="$(xdg-user-dir PICTURES 2>/dev/null || echo "$HOME/Pictures")"
-wallDIR="$PICTURES_DIR/wallpapers"
+# Directories
+THEMES_DIR="$HOME/.config/hypr/themes"
 SCRIPTSDIR="$HOME/.config/hypr/scripts"
 UserScripts="$HOME/.config/hypr/UserScripts"
-wallpaper_current="$HOME/.config/hypr/wallpaper_effects/.wallpaper_current"
+
+# State files
+MODE_FILE="$HOME/.cache/.theme_mode"
 
 # Directory for swaync
 iDIR="$HOME/.config/swaync/images"
-iDIRi="$HOME/.config/swaync/icons"
 
 # swww transition config
 FPS=60
@@ -25,6 +25,24 @@ SWWW_PARAMS="--transition-fps $FPS --transition-type $TYPE --transition-duration
 if ! command -v bc &>/dev/null; then
   notify-send -i "$iDIR/error.png" "bc missing" "Install package bc first"
   exit 1
+fi
+
+# Get current mode and set wallpaper directory
+get_current_mode() {
+    if [[ -f "$MODE_FILE" ]]; then
+        cat "$MODE_FILE"
+    else
+        echo "Dark"
+    fi
+}
+
+CURRENT_MODE=$(get_current_mode)
+if [[ "$CURRENT_MODE" = "Light" ]]; then
+    wallDIR="$THEMES_DIR/light/wallpapers"
+    THEME_LABEL="Light"
+else
+    wallDIR="$THEMES_DIR/dark/wallpapers"
+    THEME_LABEL="Dark"
 fi
 
 # Variables
@@ -60,17 +78,22 @@ kill_wallpaper_for_image() {
   pkill hyprpaper 2>/dev/null
 }
 
-# Retrieve wallpapers (both images & videos)
+# Retrieve wallpapers (images only - no videos for themed picker)
 mapfile -d '' PICS < <(find -L "${wallDIR}" -type f \( \
   -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.png" -o -iname "*.gif" -o \
-  -iname "*.bmp" -o -iname "*.tiff" -o -iname "*.webp" -o \
-  -iname "*.mp4" -o -iname "*.mkv" -o -iname "*.mov" -o -iname "*.webm" \) -print0)
+  -iname "*.bmp" -o -iname "*.tiff" -o -iname "*.webp" \) -print0 2>/dev/null)
+
+# Check if we have wallpapers
+if [[ ${#PICS[@]} -eq 0 ]]; then
+  notify-send -i "$iDIR/error.png" "No Wallpapers" "Add wallpapers to $wallDIR"
+  exit 1
+fi
 
 RANDOM_PIC="${PICS[$((RANDOM % ${#PICS[@]}))]}"
 RANDOM_PIC_NAME=". random"
 
-# Rofi command
-rofi_command="rofi -i -show -dmenu -config $rofi_theme -theme-str $rofi_override"
+# Rofi command with theme label in message
+rofi_command="rofi -i -show -dmenu -config $rofi_theme -theme-str $rofi_override -mesg '$THEME_LABEL Mode'"
 
 # Sorting Wallpapers
 menu() {
@@ -84,49 +107,16 @@ menu() {
       cache_gif_image="$HOME/.cache/gif_preview/${pic_name}.png"
       if [[ ! -f "$cache_gif_image" ]]; then
         mkdir -p "$HOME/.cache/gif_preview"
-        magick "$pic_path[0]" -resize 1920x1080 "$cache_gif_image"
+        magick "$pic_path[0]" -resize 1920x1080 "$cache_gif_image" 2>/dev/null || true
       fi
       printf "%s\x00icon\x1f%s\n" "$pic_name" "$cache_gif_image"
-    elif [[ "$pic_name" =~ \.(mp4|mkv|mov|webm|MP4|MKV|MOV|WEBM)$ ]]; then
-      cache_preview_image="$HOME/.cache/video_preview/${pic_name}.png"
-      if [[ ! -f "$cache_preview_image" ]]; then
-        mkdir -p "$HOME/.cache/video_preview"
-        ffmpeg -v error -y -i "$pic_path" -ss 00:00:01.000 -vframes 1 "$cache_preview_image"
-      fi
-      printf "%s\x00icon\x1f%s\n" "$pic_name" "$cache_preview_image"
     else
       printf "%s\x00icon\x1f%s\n" "$pic_name" "$pic_path"
     fi
   done
 }
 
-
-modify_startup_config() {
-  local selected_file="$1"
-  local startup_config="$HOME/.config/hypr/UserConfigs/Startup_Apps.conf"
-
-  # Check if it's a live wallpaper (video)
-  if [[ "$selected_file" =~ \.(mp4|mkv|mov|webm)$ ]]; then
-    # For video wallpapers:
-    sed -i '/^\s*exec-once\s*=\s*swww-daemon\s*--format\s*xrgb\s*$/s/^/\#/' "$startup_config"
-    sed -i '/^\s*#\s*exec-once\s*=\s*mpvpaper\s*.*$/s/^#\s*//;' "$startup_config"
-
-    # Update the livewallpaper variable with the selected video path (using $HOME)
-    selected_file="${selected_file/#$HOME/\$HOME}" # Replace /home/user with $HOME
-    sed -i "s|^\$livewallpaper=.*|\$livewallpaper=\"$selected_file\"|" "$startup_config"
-
-    echo "Configured for live wallpaper (video)."
-  else
-    # For image wallpapers:
-    sed -i '/^\s*#\s*exec-once\s*=\s*swww-daemon\s*--format\s*xrgb\s*$/s/^\s*#\s*//;' "$startup_config"
-
-    sed -i '/^\s*exec-once\s*=\s*mpvpaper\s*.*$/s/^/\#/' "$startup_config"
-
-    echo "Configured for static wallpaper (image)."
-  fi
-}
-
-# Apply Image Wallpaper
+# Apply Image Wallpaper (following JaKooLit's methodology)
 apply_image_wallpaper() {
   local image_path="$1"
 
@@ -145,21 +135,6 @@ apply_image_wallpaper() {
   "$UserScripts/Refresh.sh"
   sleep 1
   "$UserScripts/sddm_wallpaper.sh" --normal
-
-}
-
-apply_video_wallpaper() {
-  local video_path="$1"
-
-  # Check if mpvpaper is installed
-  if ! command -v mpvpaper &>/dev/null; then
-    notify-send -i "$iDIR/error.png" "E-R-R-O-R" "mpvpaper not found"
-    return 1
-  fi
-  kill_wallpaper_for_video
-
-  # Apply video wallpaper using mpvpaper
-  mpvpaper '*' -o "load-scripts=no no-audio --loop" "$video_path" &
 }
 
 # Main function
@@ -180,7 +155,7 @@ main() {
 
   choice_basename=$(basename "$choice" | sed 's/\(.*\)\.[^.]*$/\1/')
 
-  # Search for the selected file in the wallpapers directory, including subdirectories
+  # Search for the selected file in the theme's wallpapers directory
   selected_file=$(find "$wallDIR" -iname "$choice_basename.*" -print -quit)
 
   if [[ -z "$selected_file" ]]; then
@@ -188,15 +163,7 @@ main() {
     exit 1
   fi
 
-  # Modify the Startup_Apps.conf file based on wallpaper type
-  modify_startup_config "$selected_file"
-
-  # **CHECK FIRST** if it's a video or an image **before calling any function**
-  if [[ "$selected_file" =~ \.(mp4|mkv|mov|webm|MP4|MKV|MOV|WEBM)$ ]]; then
-    apply_video_wallpaper "$selected_file"
-  else
-    apply_image_wallpaper "$selected_file"
-  fi
+  apply_image_wallpaper "$selected_file"
 }
 
 # Check if rofi is already running

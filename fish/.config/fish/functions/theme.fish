@@ -3,7 +3,7 @@ function _theme_apply_mode -d "Apply light or dark mode to the desktop environme
 
     set -l swaync_style ~/.config/swaync/style.css
     set -l ags_style ~/.config/ags/user/style.css
-    set -l wallust_rofi ~/.config/wallust/templates/colors-rofi.rasi
+    set -l wallust_rofi ~/.config/rofi/wallust/colors-rofi.rasi
     set -l qt5ct_conf ~/.config/qt5ct/qt5ct.conf
     set -l qt6ct_conf ~/.config/qt6ct/qt6ct.conf
 
@@ -16,7 +16,14 @@ function _theme_apply_mode -d "Apply light or dark mode to the desktop environme
             sed -i '/@define-color noti-bg-alt/s/#.*;/#F0F0F0;/' $ags_style
         end
 
+        # Light mode: white background, dark text
         sed -i '/^background:/s/.*/background: rgba(255,255,255,0.9);/' $wallust_rofi
+        sed -i '/^foreground:/s/.*/foreground: #1a1a2e;/' $wallust_rofi
+        sed -i '/^normal-foreground:/s/.*/normal-foreground: #1a1a2e;/' $wallust_rofi
+        sed -i '/^active-foreground:/s/.*/active-foreground: #1a1a2e;/' $wallust_rofi
+        sed -i '/^urgent-foreground:/s/.*/urgent-foreground: #1a1a2e;/' $wallust_rofi
+        sed -i '/^selected-normal-foreground:/s/.*/selected-normal-foreground: #ffffff;/' $wallust_rofi
+        sed -i '/^selected-active-foreground:/s/.*/selected-active-foreground: #ffffff;/' $wallust_rofi
 
         test -f $qt5ct_conf; and sed -i "s|^color_scheme_path=.*\$|color_scheme_path=$HOME/.config/qt5ct/colors/Catppuccin-Latte.conf|" $qt5ct_conf
         test -f $qt6ct_conf; and sed -i "s|^color_scheme_path=.*\$|color_scheme_path=$HOME/.config/qt6ct/colors/Catppuccin-Latte.conf|" $qt6ct_conf
@@ -34,7 +41,14 @@ function _theme_apply_mode -d "Apply light or dark mode to the desktop environme
             sed -i '/@define-color noti-bg-alt/s/#.*;/#111111;/' $ags_style
         end
 
+        # Dark mode: dark background, light text
         sed -i '/^background:/s/.*/background: rgba(0,0,0,0.7);/' $wallust_rofi
+        sed -i '/^foreground:/s/.*/foreground: #dfe3f1;/' $wallust_rofi
+        sed -i '/^normal-foreground:/s/.*/normal-foreground: #dfe3f1;/' $wallust_rofi
+        sed -i '/^active-foreground:/s/.*/active-foreground: #dfe3f1;/' $wallust_rofi
+        sed -i '/^urgent-foreground:/s/.*/urgent-foreground: #dfe3f1;/' $wallust_rofi
+        sed -i '/^selected-normal-foreground:/s/.*/selected-normal-foreground: #1a1a2e;/' $wallust_rofi
+        sed -i '/^selected-active-foreground:/s/.*/selected-active-foreground: #1a1a2e;/' $wallust_rofi
 
         test -f $qt5ct_conf; and sed -i "s|^color_scheme_path=.*\$|color_scheme_path=$HOME/.config/qt5ct/colors/Catppuccin-Mocha.conf|" $qt5ct_conf
         test -f $qt6ct_conf; and sed -i "s|^color_scheme_path=.*\$|color_scheme_path=$HOME/.config/qt6ct/colors/Catppuccin-Mocha.conf|" $qt6ct_conf

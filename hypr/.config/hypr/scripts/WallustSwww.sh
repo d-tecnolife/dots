@@ -128,6 +128,11 @@ if pidof ghostty >/dev/null; then
   for pid in $(pidof ghostty); do kill -SIGUSR2 "$pid" 2>/dev/null || true; done
 fi
 
+# Signal kitty to reload colors
+if pidof kitty >/dev/null; then
+  for pid in $(pidof kitty); do kill -SIGUSR1 "$pid" 2>/dev/null || true; done
+fi
+
 # Prompt Waybar to reload colors
 if command -v waybar-msg >/dev/null 2>&1; then
   waybar-msg cmd reload >/dev/null 2>&1 || true

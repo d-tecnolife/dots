@@ -111,6 +111,7 @@ wallust run -s "$wallpaper_path" || true
 wallust_targets=(
   "$HOME/.config/waybar/wallust/colors-waybar.css"
   "$HOME/.config/rofi/wallust/colors-rofi.rasi"
+  "$HOME/.config/kitty/kitty-themes/01-Wallust.conf"
 )
 wait_for_templates "$start_ts" "${wallust_targets[@]}" || true
 

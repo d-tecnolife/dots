@@ -14,39 +14,27 @@ file_exists() {
   fi
 }
 
-# Kill already running processes
-_ps=(waybar rofi swaync ags)
+# Kill rofi, swaync, ags (but NOT waybar — reload it in-place)
+_ps=(rofi swaync ags)
 for _prs in "${_ps[@]}"; do
   if pidof "${_prs}" >/dev/null; then
     pkill "${_prs}"
   fi
 done
 
-# added since wallust sometimes not applying
-killall -SIGUSR2 waybar
-# Added sleep for GameMode causing multiple waybar
-sleep 0.1
-
-# quit ags & relaunch ags
-#ags -q && ags &
+# Reload waybar in-place; restart if not running
+if pidof waybar >/dev/null; then
+  killall -SIGUSR2 waybar 2>/dev/null || true
+else
+  waybar &
+fi
 
 # quit quickshell & relaunch quickshell
 pkill qs && qs &
 
-# some process to kill
-for pid in $(pidof waybar rofi swaync ags swaybg); do
-  kill -SIGUSR1 "$pid"
-  sleep 0.1
-done
-
-#Restart waybar
-sleep 0.1
-waybar &
-
 # relaunch swaync
-sleep 0.3
+sleep 0.1
 swaync >/dev/null 2>&1 &
-# reload swaync
 swaync-client --reload-config
 
 # Relaunching rainbow borders if the script exists

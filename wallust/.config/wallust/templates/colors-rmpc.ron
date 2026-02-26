@@ -2,10 +2,10 @@
 #![enable(unwrap_newtypes)]
 #![enable(unwrap_variant_newtypes)]
 (
-    background_color: "{{background | darken(0.5)}}",
+    background_color: "{{background}}",
     text_color: "{{foreground}}",
-    header_background_color: "{{background | darken(0.5)}}",
-    modal_background_color: "{{background | darken(0.5)}}",
+    header_background_color: "{{background}}",
+    modal_background_color: "{{background}}",
     modal_backdrop: true,
     preview_label_style: (fg: "{{color5}}"),
     preview_metadata_group_style: (fg: "{{color5}}", modifiers: "Bold"),

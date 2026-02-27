@@ -6,7 +6,7 @@ Arch Linux dotfiles managed with [GNU Stow](https://www.gnu.org/software/stow/).
 
 ```sh
 cd ~/dots
-stow fish git hypr kitty nvim rofi swaync tmux wallust waybar wlogout yazi local-bin keyd claude
+stow agents fish git hypr kitty nvim rofi swaync tmux wallust waybar wlogout yazi local-bin keyd claude
 
 # keyd requires root target
 sudo stow -d ~/.dotfiles -t / keyd
@@ -16,6 +16,7 @@ sudo stow -d ~/.dotfiles -t / keyd
 
 | Package | Description |
 |---|---|
+| `agents` | Global AGENTS policy in `~/AGENTS.md` |
 | `fish` | Fish shell |
 | `git` | Git config |
 | `hypr` | Hyprland, hyprlock, hypridle, scripts, themes |

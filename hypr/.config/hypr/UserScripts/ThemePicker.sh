@@ -174,8 +174,9 @@ _apply_mode() {
 
     gsettings set org.gnome.desktop.interface color-scheme prefer-light 2>/dev/null || true
 
-    # Kitty: swap to light ANSI colors
+    # Kitty: swap to light ANSI colors and readability overrides
     ln -sf ansi-light.conf "$HOME/.config/kitty/kitty-themes/ansi-colors.conf"
+    ln -sf accessibility-light.conf "$HOME/.config/kitty/kitty-themes/accessibility-overrides.conf"
   else
     sed -i '/@define-color noti-bg/s/rgba([0-9]*,\s*[0-9]*,\s*[0-9]*,\s*[0-9.]*);/rgba(0, 0, 0, 0.8);/' "$swaync_style" 2>/dev/null || true
 
@@ -203,8 +204,9 @@ _apply_mode() {
 
     gsettings set org.gnome.desktop.interface color-scheme prefer-dark 2>/dev/null || true
 
-    # Kitty: swap to dark ANSI colors
+    # Kitty: swap to dark ANSI colors and readability overrides
     ln -sf ansi-dark.conf "$HOME/.config/kitty/kitty-themes/ansi-colors.conf"
+    ln -sf accessibility-dark.conf "$HOME/.config/kitty/kitty-themes/accessibility-overrides.conf"
   fi
 
   echo "$mode" >"$MODE_FILE"

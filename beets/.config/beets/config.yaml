@@ -1,7 +1,10 @@
 directory: ~/music
 library: ~/.config/beets/library.db
 
-plugins: chroma fetchart embedart
+pluginpath:
+  - ~/.config/beets/plugins
+
+plugins: chroma fetchart embedart musicbrainz singletoncoverart
 
 import:
   move: yes
@@ -10,7 +13,8 @@ import:
 
 fetchart:
   auto: yes
-  sources: coverart itunes amazon
+  sources: coverart
+  cautious: yes
 
 embedart:
   auto: yes
@@ -20,6 +24,12 @@ chroma:
 
 acoustid:
   apikey: RFgKEdTDpF
+
+singletoncoverart:
+  ifempty: yes
+  max_releases: 8
+  image_size: 500
+  request_timeout: 15
 
 paths:
   default: $albumartist/$title

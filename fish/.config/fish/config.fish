@@ -7,4 +7,3 @@ fish_add_path -g ~/.cargo/bin
 if test -f ~/.config/fish/config.local.fish
     source ~/.config/fish/config.local.fish
 end
-tmux
